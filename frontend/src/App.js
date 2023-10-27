@@ -26,12 +26,12 @@ function App() {
         },
       })
       .then((response) => {
-        console.log(response.data);
         if (response.data.error) {
           setAuthState({
             ...authState,
             status: false,
           });
+          console.log(authState.status);
         } else {
           setAuthState({
             id: response.data.id,

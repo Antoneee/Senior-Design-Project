@@ -1,5 +1,5 @@
 .sidenav {
-  height: calc(30vh - 60px);
+  height: calc(100vh - 60px);
   width: 200px; /* Fixed width to ensure uniform look across different screens */
   max-width: 80%; /* Ensure it doesn't consume too much space on smaller screens */
   z-index: 1;
@@ -46,4 +46,3 @@
 .listItem a:hover {
   color: white; /* Change color on hover */
 }
-

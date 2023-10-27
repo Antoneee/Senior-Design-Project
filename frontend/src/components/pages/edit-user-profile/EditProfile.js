@@ -51,7 +51,6 @@ const EditUserProfile = () => {
     axios
       .put("http://localhost:5000/updateProfile", formData)
       .then((response) => {
-        console.log(response.data);
         // Navigate or display a success message
       })
       .catch((error) => {

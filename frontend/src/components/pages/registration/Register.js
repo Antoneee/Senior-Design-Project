@@ -42,7 +42,6 @@ const Register = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log(value);
     setFormData({ ...formData, [name]: value });
   };
 
@@ -58,7 +57,6 @@ const Register = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
 
     const errors = [];
 
@@ -132,12 +130,10 @@ const Register = () => {
       errors.push("Passwords do not match.");
     }
 
-    console.log(errors);
     if (errors.length === 0) {
       axios
         .post("http://localhost:5000/register", formData)
         .then((response) => {
-          console.log(response.data);
           navigate("/login");
         })
         .catch((error) => {
@@ -164,7 +160,6 @@ const Register = () => {
   return (
     <div>
       <Header />
-       <SideNav />
       <MessageRibbon messageList={errorMessages} />
       <IndicatesRequired />
       <form onSubmit={handleSubmit} noValidate>

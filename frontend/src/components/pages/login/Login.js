@@ -23,7 +23,6 @@ const Login = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log(value);
     setFormData({ ...formData, [name]: value });
   };
 
@@ -34,7 +33,6 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
 
     const errors = [];
 
@@ -67,12 +65,10 @@ const Login = () => {
       errors.push("Invalid email address.");
     }
 
-    console.log(errors);
     if (errors.length === 0) {
       axios
         .post("http://localhost:5000/login", formData)
         .then((response) => {
-          console.log(response.data);
           if (!response.data.error) {
             localStorage.setItem("accessToken", response.data.accessToken);
             setAuthState({

@@ -9,7 +9,7 @@ import Unauthorized from "../error/Unauthorized";
 const Home = () => {
   const { authState } = useContext(AuthContext);
 
-  return authState ? (
+  return authState.status ? (
     <div>
       <Header />
       <SideNav />
