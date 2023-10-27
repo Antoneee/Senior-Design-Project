@@ -373,7 +373,7 @@ CREATE TABLE "uARexpert_test_schema_001"."user" (
     "work_phone" character varying(14),
     "home_phone" character varying(14),
     "email" character varying(50) NOT NULL,
-    "password" character varying(50) NOT NULL,
+    "password" character varying(72) NOT NULL,
     "country_id" integer NOT NULL,
     "role_id" integer NOT NULL,
     "status_id" smallint NOT NULL,
