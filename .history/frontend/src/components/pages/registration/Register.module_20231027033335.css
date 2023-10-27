@@ -1,0 +1,14 @@
+.form-container {
+  display: flex;
+  margin-left: 300px; /* equal to the width of the sidenav to avoid overlap */
+  position: relative;
+   z-index: 0; 
+}
+
+.form-sub-container {
+  width: 50%;
+}
+
+.button-ribbon {
+  background-color: gainsboro;
+}

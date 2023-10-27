@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-aligned {
+  display: flex;
+  align-items: center;
+}
+
+#logo img {
+  margin-right: 15px; /* Adjust as needed */
+}

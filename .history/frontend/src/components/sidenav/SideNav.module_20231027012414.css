@@ -1,0 +1,46 @@
+.sidenav {
+  height: 100vh;
+  width: 300px; /* Fixed width to ensure uniform look across different screens */
+  max-width: 80%; /* Ensure it doesn't consume too much space on smaller screens */
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #232323; /* Darker color for contrast */
+  transition: 0.5s ease;
+  overflow-x: hidden;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listGroup {
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+}
+
+.listItem {
+  width: 100%;
+  padding: 15px 10px;
+  text-align: center;
+  margin-bottom: 10px;
+  border-radius: 8px; /* Added border radius */
+  background-color: #ada9a8;
+  transition: background-color 0.3s ease; /* Transition effect for hover */
+}
+
+.listItem:hover {
+  background-color: #7a7675; /* Change color on hover */
+}
+
+.listItem a {
+  text-decoration: none;
+  color: black; /* Ensure text is black, change as per your preference */
+  font-weight: 500; /* Slightly bolder font */
+  transition: color 0.3s ease; /* Transition effect for hover */
+}
+
+.listItem a:hover {
+  color: white; /* Change color on hover */
+}

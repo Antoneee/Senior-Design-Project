@@ -1,0 +1,11 @@
+.form-container {
+  display: flex;
+}
+
+.form-sub-container {
+  width: 50%;
+}
+
+.button-ribbon {
+  background-color: gainsboro;
+}

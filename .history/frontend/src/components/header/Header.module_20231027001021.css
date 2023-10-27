@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: gainsboro; /* Assuming the grey color; you can replace with your specific shade of grey. */
+  padding: 10px 20px; /* You can adjust padding as needed. */
+}
+
+.left-aligned {
+  display: flex;
+  align-items: center;
+}
+
+#logo img {
+  margin-right: 15px; /* Adjust as needed */
+}

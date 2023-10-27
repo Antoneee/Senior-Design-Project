@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: grey; 
+  padding: 10px 20px; 
+}
+
+/* ... other styles ... */
+
+.left-aligned {
+  display: flex;
+  align-items: center;
+}
+
+#logo img {
+  margin-right: 15px; /* Adjust as needed */
+}

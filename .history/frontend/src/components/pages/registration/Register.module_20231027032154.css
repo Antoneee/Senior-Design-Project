@@ -1,0 +1,21 @@
+.form-container {
+  display: flex;
+}
+
+.form-sub-container {
+  width: 50%;
+}
+
+.button-ribbon {
+  background-color: gainsboro;
+}
+
+.main-content {
+  display: flex;
+  flex-wrap: nowrap; /* Ensure that the items do not wrap */
+}
+
+.page-content {
+  flex-grow: 1; /* This will allow it to take the remaining space */
+  padding: 20px;
+}

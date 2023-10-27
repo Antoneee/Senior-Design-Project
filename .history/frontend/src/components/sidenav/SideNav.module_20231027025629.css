@@ -1,0 +1,36 @@
+.sidenavCollapsed {
+  height: 100vh;
+  width: 50px; /* Reduced width when collapsed */
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #232323;
+  transition: 0.5s ease;
+  overflow-x: hidden;
+  padding: 20px 5px; /* Reduced padding when collapsed */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+}
+
+/* Optional: Style links to hide text and show only icons when collapsed (if you have icons) */
+.sidenavCollapsed .listItem a {
+  display: none;
+}
+
+/* Optional: Style for the button to toggle the SideNav */
+button {
+  margin-bottom: 10px;
+  background-color: #ada9a8;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: #232323;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #7a7675;
+}
