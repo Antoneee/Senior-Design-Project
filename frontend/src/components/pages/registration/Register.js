@@ -222,7 +222,9 @@ const Register = () => {
               value={formData.country_name}
               onChange={handleInputChange}
               required={true}
-              countryCodes={countryCodes}
+              selectItems={countryCodes.map(
+                (country) => `${country.name} (${country.code})`
+              )}
             />
             <Input
               label={"Work Phone"}

@@ -8,7 +8,9 @@ const Input = ({
   value,
   onChange,
   required,
-  countryCodes,
+  selectItems,
+  multiple,
+  size,
 }) => {
   return (
     <>
@@ -23,18 +25,25 @@ const Input = ({
           value={value}
           onChange={(e) => onChange(e)}
           required={required}
+          multiple={multiple}
+          size={size}
         >
           <option value="" disabled hidden>
             Select an option
           </option>
-          {countryCodes.map((countryCode, index) => (
-            <option key={index} value={countryCode.name}>
-              {countryCode.name} ({countryCode.code})
+          {selectItems.map((selectItem, index) => (
+            <option key={index} value={selectItem}>
+              {selectItem}
             </option>
           ))}
         </select>
       )}
-      {(type === "text" || type === "email" || type === "password") && (
+      {(type === "text" ||
+        type === "email" ||
+        type === "password" ||
+        type === "time" ||
+        type === "date" ||
+        type === "checkbox") && (
         <input
           className={styles["display-block"]}
           type={type}

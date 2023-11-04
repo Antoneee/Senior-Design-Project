@@ -119,4 +119,184 @@ const auth = (req, res) => {
   res.json(req.user);
 };
 
-module.exports = { register, login, auth };
+const getEventsByUserId = async (req, res) => {
+  try {
+    const userId = req.params.user_id;
+
+    const result = await queries.selectOp(
+      "title, start_time, end_time",
+      "event",
+      ["user_id"],
+      [userId]
+    );
+    res.status(200).json({ events: result });
+  } catch (error) {
+    console.error("Error fetching events for user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const getOtherUsers = async (req, res) => {
+  try {
+    const userId = req.params.user_id;
+    const result = await queries.customOp(
+      `SELECT id, first_name FROM "${process.env.SCHEMA}".user WHERE id != ${userId}`
+    );
+    res.status(200).json({ users: result });
+  } catch (error) {
+    console.error("Error fetching other users:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const insertEventUnderUserId = async (req, res) => {
+  const userId = req.params.user_id;
+  const {
+    title,
+    event_date,
+    start_time,
+    end_time,
+    invitees,
+    reminder_interval,
+  } = req.body;
+
+  try {
+    const eventId = await queries.insertOp(
+      "event",
+      [
+        "title",
+        "event_date",
+        "start_time",
+        "end_time",
+        "reminder_interval",
+        "created_on",
+        "created_by",
+        "modified_on",
+        "modified_by",
+        "row_version",
+        "user_id",
+        "invitees",
+      ],
+      [
+        title,
+        event_date,
+        start_time,
+        end_time,
+        reminder_interval,
+        generateDatabaseDateTime(new Date()),
+        1,
+        generateDatabaseDateTime(new Date()),
+        1,
+        1,
+        userId,
+        invitees,
+      ]
+    );
+    res
+      .status(200)
+      .json({ message: "Event inserted successfully under user", eventId });
+  } catch (error) {
+    console.error("Error inserting event under user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const getEventByUserIdAndEventId = async (req, res) => {
+  try {
+    const userId = req.params.user_id;
+    const eventId = req.params.event_id;
+
+    const result = await queries.selectOp(
+      "*",
+      "event",
+      ["user_id", "id"],
+      [userId, eventId]
+    );
+    res.status(200).json({ event: result });
+  } catch (error) {
+    console.error("Error fetching event for user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const updateEventByUserIdAndEventId = async (req, res) => {
+  try {
+    const userId = req.params.user_id;
+    const eventId = req.params.event_id;
+    const {
+      title,
+      event_date,
+      start_time,
+      end_time,
+      invitees,
+      reminder_interval,
+    } = req.body;
+
+    const result = await queries.updateOp(
+      "event",
+      [
+        "title",
+        "event_date",
+        "start_time",
+        "end_time",
+        "reminder_interval",
+        "created_on",
+        "created_by",
+        "modified_on",
+        "modified_by",
+        "row_version",
+        "user_id",
+        "invitees",
+      ],
+      [
+        title,
+        event_date,
+        start_time,
+        end_time,
+        reminder_interval,
+        generateDatabaseDateTime(new Date()),
+        1,
+        generateDatabaseDateTime(new Date()),
+        1,
+        1,
+        userId,
+        invitees,
+      ],
+      ["user_id", "id"],
+      [userId, eventId]
+    );
+    res.status(200).json({ message: "Event updated successfully" });
+  } catch (error) {
+    console.error("Error updating event:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const deleteEventByUserIdAndEventId = async (req, res) => {
+  try {
+    const userId = req.params.user_id;
+    const eventId = req.params.event_id;
+
+    const result = await queries.deleteOp(
+      "event",
+      ["id", "user_id"],
+      [eventId, userId]
+    );
+    res.status(200).json({ message: "Event deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting event:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+module.exports = {
+  register,
+  login,
+  auth,
+  getOtherUsers,
+  getEventsByUserId,
+  insertEventUnderUserId,
+  getEventByUserIdAndEventId,
+  updateEventByUserIdAndEventId,
+  deleteEventByUserIdAndEventId,
+};

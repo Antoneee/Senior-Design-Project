@@ -49,7 +49,7 @@ const updateOp = async (
   table,
   updateCols,
   updateValues,
-  whereCol,
+  whereCols,
   whereValue
 ) => {
   try {
@@ -59,7 +59,17 @@ const updateOp = async (
         .map((col, index) => `${col} = '${updateValues[index]}'`)
         .join(", ");
     }
-    const query = `UPDATE "${process.env.SCHEMA}".${table} SET ${setClause} WHERE ${whereCol} = ${whereValue}`;
+    let whereClause = "";
+    if (whereCols?.length > 1) {
+      whereClause =
+        "WHERE " +
+        whereCols
+          .map((col, index) => `${col} = ${whereValue[index]}`)
+          .join(" AND ");
+    } else {
+      whereClause = "WHERE" + whereCol + " = " + whereValue;
+    }
+    const query = `UPDATE "${process.env.SCHEMA}".${table} SET ${setClause} ${whereClause}`;
     const result = await db.query(query);
     return result.rows[0];
   } catch (error) {
@@ -91,4 +101,14 @@ const deleteOp = async (table, whereCols, values) => {
   }
 };
 
-module.exports = { selectOp, insertOp, updateOp, deleteOp };
+const customOp = async (customQuery) => {
+  try {
+    const query = customQuery;
+    const result = await db.query(query);
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = { selectOp, insertOp, updateOp, deleteOp, customOp };

@@ -9,6 +9,8 @@ import axios from "axios";
 import NotFound from "./components/pages/error/NotFound";
 import Calendar from "./components/pages/calendar/Calendar";
 import RemoteViewing from "./components/pages/remote-viewing/RemoteViewing";
+import AddCalendar from "./components/pages/calendar/AddCalendar";
+import EditCalendar from "./components/pages/calendar/EditCalendar";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -31,7 +33,6 @@ function App() {
             ...authState,
             status: false,
           });
-          console.log(authState.status);
         } else {
           setAuthState({
             id: response.data.id,
@@ -41,7 +42,7 @@ function App() {
           });
         }
       });
-  }, [authState]);
+  }, [authState.name]);
 
   return (
     <AuthContext.Provider value={{ authState, setAuthState }}>
@@ -52,6 +53,8 @@ function App() {
           <Route path="/login" exact element={<Login />} />
           <Route path="/profile/edit" exact element={<EditProfile />} />
           <Route path="/calendar" exact element={<Calendar />} />
+          <Route path="/calendar/add" exact element={<AddCalendar />} />
+          <Route path="/calendar/edit" exact element={<EditCalendar />} />
           <Route path="/remote-viewing" exact element={<RemoteViewing />} />
           <Route path="*" exact element={<NotFound />} />
         </Routes>
