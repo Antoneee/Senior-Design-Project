@@ -185,6 +185,36 @@ ALTER TABLE "uARexpert_test_schema_001"."privilege_type" ALTER COLUMN "id" ADD G
     CACHE 1
 );
 
+-- Table: uARexpert_test_schema_001.event
+
+-- DROP TABLE IF EXISTS "uARexpert_test_schema_001".event;
+
+CREATE TABLE IF NOT EXISTS "uARexpert_test_schema_001".event
+(
+    id bigint NOT NULL DEFAULT nextval('"uARexpert_test_schema_001".event_id_seq'::regclass),
+    title text COLLATE pg_catalog."default" NOT NULL,
+    event_date date NOT NULL,
+    start_time character varying(36) COLLATE pg_catalog."default" NOT NULL,
+    end_time character varying(36) COLLATE pg_catalog."default" NOT NULL,
+    reminder_interval bigint NOT NULL,
+    created_on character varying(36) COLLATE pg_catalog."default" NOT NULL,
+    created_by bigint NOT NULL,
+    modified_on character varying(36) COLLATE pg_catalog."default" NOT NULL,
+    modified_by bigint NOT NULL,
+    row_version bigint NOT NULL,
+    user_id bigint NOT NULL,
+    invitees bigint[] NOT NULL,
+    CONSTRAINT event_pk PRIMARY KEY (id),
+    CONSTRAINT event_fk FOREIGN KEY (user_id)
+        REFERENCES "uARexpert_test_schema_001"."user" (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS "uARexpert_test_schema_001".event
+    OWNER to postgres;
 
 --
 -- TOC entry 209 (class 1259 OID 67052)
