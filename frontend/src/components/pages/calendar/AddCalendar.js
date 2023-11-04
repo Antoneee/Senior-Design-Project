@@ -123,8 +123,6 @@ const AddCalendar = () => {
     }
   };
 
-  console.log(formData.invitees);
-
   return (
     <div>
       <Header />

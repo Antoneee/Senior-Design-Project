@@ -10,7 +10,7 @@ import SideNav from "../../sidenav/SideNav";
 import styles from "./Calendar.module.css";
 import { AuthContext } from "../../../helpers/AuthContext";
 import axios from "axios";
-import DateTimeParser from "../../../helpers/DateTimeParser";
+import { DateToDateTimeParser } from "../../../helpers/DateTimeParser";
 
 const localizer = momentLocalizer(moment);
 
@@ -35,8 +35,7 @@ const Calendar = () => {
   }, [authState.name]);
 
   const handleEventClick = (event) => {
-    const eventId = event.id;
-    navigate(`/calendar/edit`);
+    navigate(`/calendar/edit/${event.id}`);
   };
 
   const handleEmptyDateClick = (date) => {
@@ -57,8 +56,8 @@ const Calendar = () => {
       <BigCalendar
         events={events.map((event) => ({
           ...event,
-          start_time: DateTimeParser(event.start_time),
-          end_time: DateTimeParser(event.end_time),
+          start_time: DateToDateTimeParser(event.start_time),
+          end_time: DateToDateTimeParser(event.end_time),
         }))}
         localizer={localizer}
         selectable={true}

@@ -124,7 +124,7 @@ const getEventsByUserId = async (req, res) => {
     const userId = req.params.user_id;
 
     const result = await queries.selectOp(
-      "title, start_time, end_time",
+      "id, title, start_time, end_time",
       "event",
       ["user_id"],
       [userId]

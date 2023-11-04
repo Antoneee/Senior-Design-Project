@@ -54,7 +54,11 @@ function App() {
           <Route path="/profile/edit" exact element={<EditProfile />} />
           <Route path="/calendar" exact element={<Calendar />} />
           <Route path="/calendar/add" exact element={<AddCalendar />} />
-          <Route path="/calendar/edit" exact element={<EditCalendar />} />
+          <Route
+            path="/calendar/edit/:eventId"
+            exact
+            element={<EditCalendar />}
+          />
           <Route path="/remote-viewing" exact element={<RemoteViewing />} />
           <Route path="*" exact element={<NotFound />} />
         </Routes>
