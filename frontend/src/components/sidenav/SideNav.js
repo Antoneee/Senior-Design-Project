@@ -1,11 +1,14 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styles from "./SideNav.module.css";
 import { Link } from "react-router-dom";
 import { Calendar as SimpleCalendar } from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { AuthContext } from "../../helpers/AuthContext";
 
 const SideNav = (props) => {
+  const { authState } = useContext(AuthContext);
+
   const [selectedDate] = useState(new Date());
 
   const handleDayClick = (date) => {
@@ -15,9 +18,11 @@ const SideNav = (props) => {
   return (
     <div className={styles.sidenav}>
       <ul className={styles.listGroup}>
-        <li className={styles.listItem}>
-          <Link to="/register">Register</Link>
-        </li>
+        {!authState && (
+          <li className={styles.listItem}>
+            <Link to="/register">Register</Link>
+          </li>
+        )}
         <li className={styles.listItem}>
           <Link to="/profile/edit">Edit User Profile</Link>
         </li>
