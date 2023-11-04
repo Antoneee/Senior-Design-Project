@@ -67,7 +67,7 @@ const updateOp = async (
           .map((col, index) => `${col} = ${whereValue[index]}`)
           .join(" AND ");
     } else {
-      whereClause = "WHERE" + whereCol + " = " + whereValue;
+      whereClause = "WHERE " + whereCols + " = " + whereValue;
     }
     const query = `UPDATE "${process.env.SCHEMA}".${table} SET ${setClause} ${whereClause}`;
     const result = await db.query(query);

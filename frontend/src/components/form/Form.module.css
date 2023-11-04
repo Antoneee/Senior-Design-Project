@@ -5,3 +5,55 @@
 .required {
   color: red;
 }
+
+.form-container {
+  display: flex;
+  margin-left: 300px; /* equal to the width of the sidenav to avoid overlap */
+  position: relative;
+  z-index: 2;
+}
+
+.form-sub-container {
+  width: 50%;
+}
+
+.button-ribbon {
+  background-color: gainsboro;
+  margin-left: 300px;
+  margin-right: 20px;
+}
+
+.button-ribbon button {
+  margin-right: 10px;
+}
+
+.modal {
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 5;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  padding: 20px;
+  width: 80%;
+  max-width: 400px;
+  position: relative;
+}
+
+.modal-heading {
+  margin-bottom: 0.6rem;
+}
+
+.modal-text {
+  margin-bottom: 1rem;
+}

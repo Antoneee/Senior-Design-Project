@@ -24,7 +24,7 @@ const SideNav = (props) => {
           </li>
         )}
         <li className={styles.listItem}>
-          <Link to="/profile/edit">Edit User Profile</Link>
+          <Link to={`/profile/edit/${authState.id}`}>Edit User Profile</Link>
         </li>
         <li className={styles.listItem}>
           <Link to="/remote-viewing">Remote Viewing</Link>

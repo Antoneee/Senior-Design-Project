@@ -149,6 +149,109 @@ const getOtherUsers = async (req, res) => {
   }
 };
 
+const getUserProfile = async (req, res) => {
+  try {
+    const userId = req.params.user_id;
+
+    const result = await queries.selectOp("*", "user", ["id"], [userId]);
+    res.status(200).json({ user: result });
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const updateUserProfile = async (req, res) => {
+  try {
+    const userId = req.params.user_id;
+    const {
+      first_name,
+      middle_name,
+      last_name,
+      mobile_phone,
+      work_phone,
+      home_phone,
+      email,
+      country_name,
+    } = req.body;
+
+    const countryResult = await queries.selectOp(
+      "id",
+      "country",
+      ["name"],
+      [country_name]
+    );
+    countryId = countryResult[0].id;
+
+    const passwordResult = await queries.selectOp(
+      "password",
+      "user",
+      ["id"],
+      [userId]
+    );
+
+    const password = passwordResult[0].password;
+
+    const result = await queries.updateOp(
+      "user",
+      [
+        "first_name",
+        "middle_name",
+        "last_name",
+        "mobile_phone",
+        "work_phone",
+        "home_phone",
+        "email",
+        "password",
+        "country_id",
+        "role_id",
+        "status_id",
+        "created_on",
+        "created_by",
+        "modified_on",
+        "modified_by",
+        "row_version",
+      ],
+      [
+        first_name,
+        middle_name ? middle_name : null,
+        last_name,
+        mobile_phone,
+        work_phone ? work_phone : null,
+        home_phone ? home_phone : null,
+        email,
+        password,
+        countryId,
+        1,
+        1,
+        generateDatabaseDateTime(new Date()),
+        1,
+        generateDatabaseDateTime(new Date()),
+        1,
+        1,
+      ],
+      ["id"],
+      [userId]
+    );
+    res.status(200).json({ message: "User updated successfully" });
+  } catch (error) {
+    console.error("Error updating user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const deleteUserProfile = async (req, res) => {
+  try {
+    const userId = req.params.user_id;
+
+    const result = await queries.deleteOp("user", ["id"], [userId]);
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 const insertEventUnderUserId = async (req, res) => {
   const userId = req.params.user_id;
   const {
@@ -294,6 +397,9 @@ module.exports = {
   login,
   auth,
   getOtherUsers,
+  getUserProfile,
+  updateUserProfile,
+  deleteUserProfile,
   getEventsByUserId,
   insertEventUnderUserId,
   getEventByUserIdAndEventId,

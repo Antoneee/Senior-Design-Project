@@ -5,7 +5,7 @@ import Footer from "../../footer/Footer";
 import Header from "../../header/Header";
 import SideNav from "../../sidenav/SideNav";
 import Input from "../../form/Input";
-import styles from "./Register.module.css";
+import styles from "../../form/Form.module.css";
 import IndicatesRequired from "../../form/IndicatesRequired";
 import MessageRibbon from "../../form/MessageRibbon";
 
@@ -131,6 +131,7 @@ const Register = () => {
     }
 
     if (errors.length === 0) {
+      console.log(formData);
       axios
         .post("http://localhost:5000/register", formData)
         .then((response) => {
@@ -222,9 +223,7 @@ const Register = () => {
               value={formData.country_name}
               onChange={handleInputChange}
               required={true}
-              selectItems={countryCodes.map(
-                (country) => `${country.name} (${country.code})`
-              )}
+              selectItems={countryCodes.map((country) => country.name)}
             />
             <Input
               label={"Work Phone"}

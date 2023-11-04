@@ -4,6 +4,9 @@ const {
   login,
   auth,
   getOtherUsers,
+  getUserProfile,
+  updateUserProfile,
+  deleteUserProfile,
   getEventsByUserId,
   insertEventUnderUserId,
   getEventByUserIdAndEventId,
@@ -17,6 +20,9 @@ router.post("/register", register);
 router.post("/login", login);
 router.get("/auth", validateToken, auth);
 router.get("/users/exclude/:user_id", getOtherUsers);
+router.get("/users/:user_id", getUserProfile);
+router.put("/users/:user_id", updateUserProfile);
+router.delete("/users/:user_id", deleteUserProfile);
 router.get("/users/:user_id/events", getEventsByUserId);
 router.post("/users/:user_id/events", insertEventUnderUserId);
 router.get("/users/:user_id/events/:event_id", getEventByUserIdAndEventId);
