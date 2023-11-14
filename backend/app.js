@@ -15,16 +15,6 @@ const io = require("socket.io")(server, {
 });
 require("dotenv").config();
 
-app.use(cors());
-// parse requests of content-type - application/json
-app.use(express.json());
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
-
 io.on("connection", (socket) => {
   socket.emit("me", socket.id);
 
@@ -45,10 +35,20 @@ io.on("connection", (socket) => {
   });
 });
 
+app.use(cors());
+// parse requests of content-type - application/json
+app.use(express.json());
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+
 app.use(authRoutes);
 app.use(countryRoutes);
 app.use(languageRoutes);
 
-app.listen(process.env.PORT || 5000, () => {
+server.listen(process.env.PORT || 5000, () => {
   console.log("Server is live on port 5000");
 });
