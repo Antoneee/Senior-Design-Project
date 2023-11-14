@@ -185,7 +185,6 @@ ALTER TABLE "uARexpert_test_schema_001"."privilege_type" ALTER COLUMN "id" ADD G
     CACHE 1
 );
 
-
 --
 -- TOC entry 209 (class 1259 OID 67052)
 -- Name: role; Type: TABLE; Schema: uARexpert_test_schema_001; Owner: postgres
@@ -392,6 +391,36 @@ CREATE TABLE "uARexpert_test_schema_001"."user" (
 
 ALTER TABLE "uARexpert_test_schema_001"."user" ALTER COLUMN "id" ADD GENERATED ALWAYS AS IDENTITY (
     SEQUENCE NAME "uARexpert_test_schema_001"."user_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+-- Table: uARexpert_test_schema_001.event
+
+-- DROP TABLE IF EXISTS "uARexpert_test_schema_001".event;
+
+CREATE TABLE IF NOT EXISTS "uARexpert_test_schema_001".event
+(
+    id bigint NOT NULL,
+    title text NOT NULL,
+    event_date date NOT NULL,
+    start_time character varying(36) NOT NULL,
+    end_time character varying(36) NOT NULL,
+    reminder_interval bigint NOT NULL,
+    created_on character varying(36) NOT NULL,
+    created_by bigint NOT NULL,
+    modified_on character varying(36) NOT NULL,
+    modified_by bigint NOT NULL,
+    row_version bigint NOT NULL,
+    user_id bigint NOT NULL,
+    invitees bigint[] NOT NULL
+);
+
+ALTER TABLE "uARexpert_test_schema_001"."event" ALTER COLUMN "id" ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME "uARexpert_test_schema_001"."event_id_seq"
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
