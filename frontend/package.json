@@ -13,9 +13,12 @@
     "react-axios": "^2.0.6",
     "react-big-calendar": "^1.8.5",
     "react-calendar": "^4.6.1",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.17.0",
     "react-scripts": "5.0.1",
+    "simple-peer": "^9.11.1",
+    "socket.io-client": "^4.7.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
