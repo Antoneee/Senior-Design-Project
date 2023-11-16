@@ -24,8 +24,14 @@ const Header = () => {
       <Link to="/" className={styles["header-link"]}>
         <h1>uARexpert</h1>
       </Link>
-      {authState.status && <h2>{authState.name}</h2>}
-      {authState.status && <button onClick={logout}>Logout</button>}
+      {authState.status && (
+        <div className={styles["header-logged-in-container"]}>
+          <h2 className={styles["username"]}>{authState.name}</h2>
+          <button className={styles["logout-btn"]} onClick={logout}>
+            Logout
+          </button>
+        </div>
+      )}
     </div>
   );
 };

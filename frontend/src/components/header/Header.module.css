@@ -1,4 +1,5 @@
 .header {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,4 +10,29 @@
 .header-link {
   text-decoration: none;
   color: black;
+}
+
+.header-logged-in-container {
+  position: absolute;
+  right: 4rem;
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+}
+
+.username {
+  font-weight: normal;
+  font-size: 18px;
+}
+
+.logout-btn {
+  font-size: 14px;
+  width: 6rem;
+  padding: 0.6rem 0rem;
+  font-family: inherit;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+  background-color: transparent;
 }

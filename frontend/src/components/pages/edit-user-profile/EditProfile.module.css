@@ -1,0 +1,29 @@
+.edit-profile-component {
+  width: 1000px;
+}
+
+.save-btn {
+  background-color: #ffd43b;
+  color: black;
+  border-color: #ffd43b;
+}
+
+.save-btn:hover,
+.save-btn:active {
+  background-color: #ffcb3b;
+  color: black;
+  border-color: #ffcb3b;
+}
+
+.unregister-btn {
+  background-color: #f03e3e;
+  color: white;
+  border-color: #f03e3e;
+}
+
+.unregister-btn:hover,
+.unregister-btn:active {
+  background-color: #e03636;
+  color: white;
+  border-color: #e03636;
+}
