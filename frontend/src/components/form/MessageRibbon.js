@@ -1,11 +1,16 @@
 import React from "react";
+import formStyles from "../form/Form.module.css";
 
 const MessageRibbon = ({ messageList }) => {
   return (
     <>
-      <ul>
+      <ul className={formStyles["form-errors-container"]}>
         {messageList.map((message, index) => {
-          return <li key={index}>{message}</li>;
+          return (
+            <li className={formStyles["form-errors-list"]} key={index}>
+              {message}
+            </li>
+          );
         })}
       </ul>
     </>

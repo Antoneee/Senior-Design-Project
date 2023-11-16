@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "./Form.module.css";
+import formStyles from "./Form.module.css";
 
 const IndicatesRequired = () => {
   return (
-    <div>
-      <span className={styles["required"]}>* </span>
+    <div className={formStyles["required-content"]}>
+      <span className={formStyles["required"]}>* </span>
       <span>Indicates Required</span>
     </div>
   );

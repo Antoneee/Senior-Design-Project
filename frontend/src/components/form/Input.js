@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Form.module.css";
+import formStyles from "./Form.module.css";
 
 const Input = ({
   label,
@@ -14,12 +14,13 @@ const Input = ({
 }) => {
   return (
     <>
-      <label className={styles["display-block"]} htmlFor={name}>
-        {required && <span className={styles["required"]}>* </span>}
+      <label className={formStyles["form-label"]} htmlFor={name}>
+        {required && <span className={formStyles["required"]}>* </span>}
         {label}
       </label>
       {type === "select" && (
         <select
+          className={formStyles["form-select"]}
           name={name}
           id={name}
           value={value}
@@ -45,7 +46,7 @@ const Input = ({
         type === "date" ||
         type === "checkbox") && (
         <input
-          className={styles["display-block"]}
+          className={formStyles["form-input"]}
           type={type}
           name={name}
           id={name}

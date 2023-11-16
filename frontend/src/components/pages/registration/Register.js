@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "../../footer/Footer";
 import Header from "../../header/Header";
-import SideNav from "../../sidenav/SideNav";
 import Input from "../../form/Input";
-import styles from "../../form/Form.module.css";
+import formStyles from "../../form/Form.module.css";
 import IndicatesRequired from "../../form/IndicatesRequired";
 import MessageRibbon from "../../form/MessageRibbon";
+import registerStyles from "./Register.module.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -161,101 +161,109 @@ const Register = () => {
   return (
     <div>
       <Header />
-      <MessageRibbon messageList={errorMessages} />
-      <IndicatesRequired />
-      <form onSubmit={handleSubmit} noValidate>
-        <div className={styles["form-container"]}>
-          <div className={styles["form-sub-container"]}>
-            <Input
-              label={"First Name"}
-              type={"text"}
-              name={"first_name"}
-              value={formData.first_name}
-              onChange={handleInputChange}
-              required={true}
-            />
-            <Input
-              label={"Last Name"}
-              type={"text"}
-              name={"last_name"}
-              value={formData.last_name}
-              onChange={handleInputChange}
-              required={true}
-            />
-            <Input
-              label={"Mobile Phone"}
-              type={"text"}
-              name={"mobile_phone"}
-              value={formData.mobile_phone}
-              onChange={handleInputChange}
-              required={true}
-            />
-            <Input
-              label={"Home Phone"}
-              type={"text"}
-              name={"home_phone"}
-              value={formData.home_phone}
-              onChange={handleInputChange}
-              required={false}
-            />
-            <Input
-              label={"Password"}
-              type={"password"}
-              name={"password"}
-              value={formData.password}
-              onChange={handleInputChange}
-              required={true}
-            />
+      <div className={formStyles["form-component"]}>
+        <h1 className={formStyles["form-heading"]}>Register</h1>
+        <MessageRibbon messageList={errorMessages} />
+        <IndicatesRequired />
+        <form onSubmit={handleSubmit} noValidate>
+          <div className={formStyles["form-container"]}>
+            <div className={formStyles["form-sub-container"]}>
+              <Input
+                label={"First Name"}
+                type={"text"}
+                name={"first_name"}
+                value={formData.first_name}
+                onChange={handleInputChange}
+                required={true}
+              />
+              <Input
+                label={"Last Name"}
+                type={"text"}
+                name={"last_name"}
+                value={formData.last_name}
+                onChange={handleInputChange}
+                required={true}
+              />
+              <Input
+                label={"Mobile Phone"}
+                type={"text"}
+                name={"mobile_phone"}
+                value={formData.mobile_phone}
+                onChange={handleInputChange}
+                required={true}
+              />
+              <Input
+                label={"Home Phone"}
+                type={"text"}
+                name={"home_phone"}
+                value={formData.home_phone}
+                onChange={handleInputChange}
+                required={false}
+              />
+              <Input
+                label={"Password"}
+                type={"password"}
+                name={"password"}
+                value={formData.password}
+                onChange={handleInputChange}
+                required={true}
+              />
+            </div>
+            <div className={formStyles["form-sub-container"]}>
+              <Input
+                label={"Middle Name"}
+                type={"text"}
+                name={"middle_name"}
+                value={formData.middle_name}
+                onChange={handleInputChange}
+                required={false}
+              />
+              <Input
+                label={"Country Code"}
+                type={"select"}
+                name={"country_name"}
+                value={formData.country_name}
+                onChange={handleInputChange}
+                required={true}
+                selectItems={countryCodes.map((country) => country.name)}
+              />
+              <Input
+                label={"Work Phone"}
+                type={"text"}
+                name={"work_phone"}
+                value={formData.work_phone}
+                onChange={handleInputChange}
+                required={false}
+              />
+              <Input
+                label={"Email Address"}
+                type={"email"}
+                name={"email"}
+                value={formData.email}
+                onChange={handleInputChange}
+                required={true}
+              />
+              <Input
+                label={"Verify Password"}
+                type={"password"}
+                name={"verify_password"}
+                value={formData.verify_password}
+                onChange={handleInputChange}
+                required={true}
+              />
+            </div>
           </div>
-          <div className={styles["form-sub-container"]}>
-            <Input
-              label={"Middle Name"}
-              type={"text"}
-              name={"middle_name"}
-              value={formData.middle_name}
-              onChange={handleInputChange}
-              required={false}
-            />
-            <Input
-              label={"Country Code"}
-              type={"select"}
-              name={"country_name"}
-              value={formData.country_name}
-              onChange={handleInputChange}
-              required={true}
-              selectItems={countryCodes.map((country) => country.name)}
-            />
-            <Input
-              label={"Work Phone"}
-              type={"text"}
-              name={"work_phone"}
-              value={formData.work_phone}
-              onChange={handleInputChange}
-              required={false}
-            />
-            <Input
-              label={"Email Address"}
-              type={"email"}
-              name={"email"}
-              value={formData.email}
-              onChange={handleInputChange}
-              required={true}
-            />
-            <Input
-              label={"Verify Password"}
-              type={"password"}
-              name={"verify_password"}
-              value={formData.verify_password}
-              onChange={handleInputChange}
-              required={true}
-            />
+          <div className={formStyles["button-ribbon"]}>
+            <button className={registerStyles["register-btn"]}>Register</button>
+            <a
+              className={formStyles["redirect-link"]}
+              href="http://localhost:3000/login"
+            >
+              Need to login?
+            </a>
           </div>
-        </div>
-        <div className={styles["button-ribbon"]}>
-          <button>Register</button>
-          <a href="http://localhost:3000/login">Need to login?</a>
-        </div>
-      </form>
+        </form>
+      </div>
       <Footer />
     </div>
   );

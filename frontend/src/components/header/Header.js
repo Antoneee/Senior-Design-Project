@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <div className={styles["header"]}>
-      <Link to="/">
+      <Link to="/" className={styles["header-link"]}>
         <h1>uARexpert</h1>
       </Link>
       {authState.status && <h2>{authState.name}</h2>}
