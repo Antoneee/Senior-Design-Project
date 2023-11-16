@@ -1,5 +1,11 @@
-.form-container {
+.home-page {
   display: flex;
+  overflow: hidden;
+}
+
+.content-container {
+  position: relative;
+  width: 100%;
 }
 
 .form-sub-container {
@@ -8,4 +14,16 @@
 
 .button-ribbon {
   background-color: gainsboro;
+}
+
+.home-page-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100% - 80px);
+}
+
+.home-page-img {
+  width: 50%;
+  border-radius: 10px;
 }

@@ -16,24 +16,47 @@ const SideNav = (props) => {
   };
 
   return (
-    <div className={styles.sidenav}>
-      <ul className={styles.listGroup}>
+    <div className={styles["sidenav"]}>
+      <Link to="/" className={styles["logo"]}>
+        uARexpert
+      </Link>
+      <ul className={styles["sidenav-links"]}>
         {!authState && (
-          <li className={styles.listItem}>
-            <Link to="/register">Register</Link>
-          </li>
+          <>
+            <li>
+              <Link className={styles["sidenav-link"]} to="/register">
+                Register
+              </Link>
+            </li>
+            <div className={styles["horizontal-line"]}></div>
+          </>
         )}
-        <li className={styles.listItem}>
-          <Link to={`/profile/edit/${authState.id}`}>Edit User Profile</Link>
+        <li>
+          <Link
+            className={styles["sidenav-link"]}
+            to={`/profile/edit/${authState.id}`}
+          >
+            Edit User Profile
+          </Link>
         </li>
-        <li className={styles.listItem}>
-          <Link to="/remote-viewing">Remote Viewing</Link>
+        <div className={styles["horizontal-line"]}></div>
+        <li>
+          <Link className={styles["sidenav-link"]} to="/remote-viewing">
+            Remote Viewing
+          </Link>
         </li>
+        <div className={styles["horizontal-line"]}></div>
         {props.calendar ? (
-          <SimpleCalendar value={selectedDate} onClickDay={handleDayClick} />
+          <SimpleCalendar
+            className={styles["small-calendar"]}
+            value={selectedDate}
+            onClickDay={handleDayClick}
+          />
         ) : (
-          <li className={styles.listItem}>
-            <Link to="/calendar">Calendar</Link>
+          <li>
+            <Link className={styles["sidenav-link"]} to="/calendar">
+              Calendar
+            </Link>
           </li>
         )}
       </ul>

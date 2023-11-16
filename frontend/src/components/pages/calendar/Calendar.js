@@ -7,7 +7,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import SideNav from "../../sidenav/SideNav";
-import styles from "./Calendar.module.css";
+import calendarStyles from "./Calendar.module.css";
 import { AuthContext } from "../../../helpers/AuthContext";
 import axios from "axios";
 import { DateToDateTimeParser } from "../../../helpers/DateTimeParser";
@@ -50,29 +50,33 @@ const Calendar = () => {
   };
 
   return (
-    <div>
-      <Header />
+    <div className={calendarStyles["calendar-page"]}>
       <SideNav calendar={true} setSelectedDate={setSelectedDate} />
-      <BigCalendar
-        events={events.map((event) => ({
-          ...event,
-          start_time: DateToDateTimeParser(event.start_time),
-          end_time: DateToDateTimeParser(event.end_time),
-        }))}
-        localizer={localizer}
-        selectable={true}
-        onSelectEvent={handleEventClick}
-        onSelectSlot={handleEmptyDateClick}
-        startAccessor="start_time"
-        endAccessor="end_time"
-        defaultView="day"
-        defaultDate={new Date()}
-        date={selectedDate}
-        components={{ toolbar: CustomToolbar }}
-        onNavigate={(newDate) => setSelectedDate(newDate)}
-        className={styles.calendar}
-      />
-      <Footer />
+      <div className={calendarStyles["content-container"]}>
+        <Header />
+        <div className={calendarStyles["calendar-container"]}>
+          <BigCalendar
+            events={events.map((event) => ({
+              ...event,
+              start_time: DateToDateTimeParser(event.start_time),
+              end_time: DateToDateTimeParser(event.end_time),
+            }))}
+            localizer={localizer}
+            selectable={true}
+            onSelectEvent={handleEventClick}
+            onSelectSlot={handleEmptyDateClick}
+            startAccessor="start_time"
+            endAccessor="end_time"
+            defaultView="day"
+            defaultDate={new Date()}
+            date={selectedDate}
+            components={{ toolbar: CustomToolbar }}
+            onNavigate={(newDate) => setSelectedDate(newDate)}
+            className={calendarStyles.calendar}
+          />
+        </div>
+        <Footer />
+      </div>
     </div>
   );
 };

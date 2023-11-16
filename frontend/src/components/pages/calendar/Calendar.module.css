@@ -1,7 +1,15 @@
+.calendar-page {
+  display: flex;
+}
+
+.content-container {
+  position: relative;
+  width: 100%;
+}
+
 .calendar {
-  height: 500px;
-  width: 1000px;
-  margin-left: 220px;
+  height: 600px;
+  width: 100%;
 }
 
 .selected {
@@ -12,4 +20,8 @@
   height: 10rem;
   width: 10rem;
   overflow-y: scroll;
+}
+
+.calendar-container {
+  padding: 2rem;
 }

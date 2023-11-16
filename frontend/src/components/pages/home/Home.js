@@ -5,15 +5,21 @@ import Header from "../../header/Header";
 import styles from "./Home.module.css";
 import { AuthContext } from "../../../helpers/AuthContext";
 import Unauthorized from "../error/Unauthorized";
+import homeImg from "../../../assets/home.jpg";
 
 const Home = () => {
   const { authState } = useContext(AuthContext);
 
   return authState.status ? (
-    <div>
-      <Header />
+    <div className={styles["home-page"]}>
       <SideNav />
-      <Footer />
+      <div className={styles["content-container"]}>
+        <Header />
+        <div className={styles["home-page-img-container"]}>
+          <img className={styles["home-page-img"]} src={homeImg} />
+        </div>
+        <Footer />
+      </div>
     </div>
   ) : (
     <Unauthorized />
