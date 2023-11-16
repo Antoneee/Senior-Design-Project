@@ -161,7 +161,9 @@ const Register = () => {
   return (
     <div>
       <Header />
-      <div className={formStyles["form-component"]}>
+      <div
+        className={`${formStyles["form-component"]} ${registerStyles["register-component"]}`}
+      >
         <h1 className={formStyles["form-heading"]}>Register</h1>
         <MessageRibbon messageList={errorMessages} />
         <IndicatesRequired />

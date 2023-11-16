@@ -4,7 +4,8 @@ import axios from "axios";
 import Footer from "../../footer/Footer";
 import Header from "../../header/Header";
 import Input from "../../form/Input";
-import styles from "./Login.module.css";
+import loginStyles from "./Login.module.css";
+import formStyles from "../../form/Form.module.css";
 import IndicatesRequired from "../../form/IndicatesRequired";
 import MessageRibbon from "../../form/MessageRibbon";
 import { AuthContext } from "../../../helpers/AuthContext";
@@ -98,34 +99,40 @@ const Login = () => {
   return (
     <div>
       <Header />
-      <MessageRibbon messageList={errorMessages} />
-      <IndicatesRequired />
-      <form onSubmit={handleSubmit} noValidate>
-        <div className={styles["form-container"]}>
-          <div className={styles["form-sub-container"]}>
-            <Input
-              label={"Email Address"}
-              type={"email"}
-              name={"email"}
-              value={formData.email}
-              onChange={handleInputChange}
-              required={true}
-            />
-            <Input
-              label={"Password"}
-              type={"password"}
-              name={"password"}
-              value={formData.password}
-              onChange={handleInputChange}
-              required={true}
-            />
+      <div
+        className={`${formStyles["form-component"]} ${loginStyles["login-component"]}`}
+      >
+        <h1 className={formStyles["form-heading"]}>Login</h1>
+        <MessageRibbon messageList={errorMessages} />
+        <IndicatesRequired />
+        <form onSubmit={handleSubmit} noValidate>
+          <Input
+            label={"Email Address"}
+            type={"email"}
+            name={"email"}
+            value={formData.email}
+            onChange={handleInputChange}
+            required={true}
+          />
+          <Input
+            label={"Password"}
+            type={"password"}
+            name={"password"}
+            value={formData.password}
+            onChange={handleInputChange}
+            required={true}
+          />
+          <div className={formStyles["button-ribbon"]}>
+            <button className={loginStyles["login-btn"]}>Login</button>
+            <a
+              className={formStyles["redirect-link"]}
+              href="http://localhost:3000/register"
+            >
+              Need to register?
+            </a>
           </div>
-        </div>
-        <div className={styles["button-ribbon"]}>
-          <button>Login</button>
-          <a href="http://localhost:3000/register">Need to register?</a>
-        </div>
-      </form>
+        </form>
+      </div>
       <Footer />
     </div>
   );
