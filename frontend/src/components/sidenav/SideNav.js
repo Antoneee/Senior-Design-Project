@@ -40,12 +40,17 @@ const SideNav = (props) => {
           </Link>
         </li>
         <div className={styles["horizontal-line"]}></div>
-        <li>
-          <Link className={styles["sidenav-link"]} to="/remote-viewing">
-            Remote Viewing
-          </Link>
-        </li>
-        <div className={styles["horizontal-line"]}></div>
+        {!props.remoteViewing && (
+          <>
+            <li>
+              <Link className={styles["sidenav-link"]} to="/remote-viewing">
+                Remote Viewing
+              </Link>
+            </li>
+            <div className={styles["horizontal-line"]}></div>
+          </>
+        )}
+
         {props.calendar ? (
           <SimpleCalendar
             className={styles["small-calendar"]}

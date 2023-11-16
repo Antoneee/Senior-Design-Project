@@ -6,6 +6,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import Peer from "simple-peer";
 import io from "socket.io-client";
 import { AuthContext } from "../../../helpers/AuthContext";
+import remoteViewingStyles from "./RemoteViewing.module.css";
 
 const socket = io.connect("http://localhost:5000");
 
@@ -100,64 +101,82 @@ const RemoteViewing = () => {
   };
 
   return (
-    <>
-      <h1 style={{ textAlign: "center", color: "#fff" }}>Zoomish</h1>
-      <div className="container">
-        <div className="video-container">
-          <div className="video">
-            {stream && (
-              <video
-                playsInline
-                muted
-                ref={myVideo}
-                autoPlay
-                style={{ width: "300px" }}
-              />
-            )}
+    <div className={remoteViewingStyles["remote-viewing-page"]}>
+      <SideNav remoteViewing={true} />
+      <div className={remoteViewingStyles["content-container"]}>
+        <Header />
+        <div className={remoteViewingStyles["remote-viewing-container"]}>
+          <h1 className={remoteViewingStyles["remote-viewing-heading"]}>
+            Remote Viewing
+          </h1>
+          <div className={remoteViewingStyles["video-container"]}>
+            <div className={remoteViewingStyles["video"]}>
+              {stream && <video playsInline muted ref={myVideo} autoPlay />}
+              <div className={remoteViewingStyles["video-user-container"]}>
+                <p className={remoteViewingStyles["video-name"]}>
+                  {authState.name}
+                </p>
+                <CopyToClipboard text={me}>
+                  <button className={remoteViewingStyles["copy-id-btn"]}>
+                    Copy ID
+                  </button>
+                </CopyToClipboard>
+              </div>
+            </div>
+            <div className={remoteViewingStyles["video"]}>
+              {callAccepted && !callEnded ? (
+                <>
+                  <video playsInline ref={userVideo} autoPlay />
+                  <p className={remoteViewingStyles["video-name"]}>{name}</p>
+                </>
+              ) : null}
+            </div>
           </div>
-          <div className="video">
-            {callAccepted && !callEnded ? (
-              <video
-                playsInline
-                ref={userVideo}
-                autoPlay
-                style={{ width: "300px" }}
-              />
+          <div className={remoteViewingStyles["call-container"]}>
+            <input
+              id="filled-basic"
+              label="ID to call"
+              type="text"
+              value={idToCall}
+              onChange={(e) => setIdToCall(e.target.value)}
+              className={remoteViewingStyles["call-input"]}
+              placeholder="Enter the ID of the person you want to call..."
+            />
+            <div className={remoteViewingStyles["call-button"]}>
+              {callAccepted && !callEnded ? (
+                <button
+                  className={`${remoteViewingStyles["call-btn"]} ${remoteViewingStyles["end-call-btn"]}`}
+                  onClick={leaveCall}
+                >
+                  End Call
+                </button>
+              ) : (
+                <button
+                  className={`${remoteViewingStyles["call-btn"]} ${remoteViewingStyles["start-call-btn"]}`}
+                  onClick={() => callUser(idToCall)}
+                >
+                  Start Call
+                </button>
+              )}
+            </div>
+          </div>
+          <div>
+            {receivingCall && !callAccepted ? (
+              <div className={remoteViewingStyles["caller-msg-container"]}>
+                <h1>{name} is calling...</h1>
+                <button
+                  className={`${remoteViewingStyles["call-btn"]} ${remoteViewingStyles["answer-call-btn"]}`}
+                  onClick={answerCall}
+                >
+                  Answer
+                </button>
+              </div>
             ) : null}
           </div>
         </div>
-        <div className="myId">
-          <p>{authState.name}</p>
-          <CopyToClipboard text={me} style={{ marginBottom: "2rem" }}>
-            <button>Copy ID</button>
-          </CopyToClipboard>
-
-          <input
-            id="filled-basic"
-            label="ID to call"
-            type="text"
-            value={idToCall}
-            onChange={(e) => setIdToCall(e.target.value)}
-          />
-          <div className="call-button">
-            {callAccepted && !callEnded ? (
-              <button onClick={leaveCall}>End Call</button>
-            ) : (
-              <button onClick={() => callUser(idToCall)}>phone icon</button>
-            )}
-            {idToCall}
-          </div>
-        </div>
-        <div>
-          {receivingCall && !callAccepted ? (
-            <div className="caller">
-              <h1>{name} is calling...</h1>
-              <button onClick={answerCall}>Answer</button>
-            </div>
-          ) : null}
-        </div>
+        <Footer />
       </div>
-    </>
+    </div>
   );
 };
 
