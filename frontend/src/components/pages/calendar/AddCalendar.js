@@ -126,80 +126,100 @@ const AddCalendar = () => {
   return (
     <div>
       <Header />
-      <h1>Add Calendar Event</h1>
-      <MessageRibbon messageList={errorMessages} />
-      <IndicatesRequired />
-      <form onSubmit={handleSubmit} noValidate>
-        <div className={formStyles["form-container"]}>
-          <div className={formStyles["form-sub-container"]}>
-            <Input
-              label={"Title"}
-              type={"text"}
-              name={"title"}
-              value={formData.title}
-              onChange={handleInputChange}
-              required={true}
-            />
-            <Input
-              label={"Date"}
-              type={"date"}
-              name={"event_date"}
-              value={formData.event_date}
-              onChange={handleInputChange}
-              required={true}
-            />
-            <Input
-              label={"Start Time"}
-              type={"time"}
-              name={"start_time"}
-              value={formData.start_time}
-              onChange={handleInputChange}
-              required={true}
-            />
-            <Input
-              label={"End Time"}
-              type={"time"}
-              name={"end_time"}
-              value={formData.end_time}
-              onChange={handleInputChange}
-              required={true}
-            />
-            <label>
-              <span className={formStyles["required"]}>* </span>Invitees
-            </label>
-            <ul className={calendarStyles.invitees}>
-              {otherUsers.map((otherUser) => {
-                return (
-                  <li
-                    className={
-                      formData.invitees.includes(otherUser.id)
-                        ? `${calendarStyles.selected}`
-                        : ""
-                    }
-                    onClick={() => addInvitee(otherUser.id)}
-                    key={otherUser.id}
-                  >
-                    {otherUser.first_name}
-                  </li>
-                );
-              })}
-            </ul>
-            <Input
-              label={"Reminder"}
-              type={"select"}
-              name={"reminder_interval"}
-              value={formData.reminder_interval}
-              onChange={handleInputChange}
-              required={true}
-              selectItems={reminderIntervals}
-            />
+      <div
+        className={`${formStyles["form-component"]} ${calendarStyles["add-calendar-component"]}`}
+      >
+        <h1 className={formStyles["form-heading"]}>Add Calendar Event</h1>
+        <MessageRibbon messageList={errorMessages} />
+        <IndicatesRequired />
+        <form onSubmit={handleSubmit} noValidate>
+          <div className={formStyles["form-container"]}>
+            <div className={calendarStyles["calendar-form-container"]}>
+              <Input
+                label={"Title"}
+                type={"text"}
+                name={"title"}
+                value={formData.title}
+                onChange={handleInputChange}
+                required={true}
+              />
+              <div className={calendarStyles["calendar-form-col-container"]}>
+                <div className={calendarStyles["calendar-form-col-item"]}>
+                  <Input
+                    label={"Date"}
+                    type={"date"}
+                    name={"event_date"}
+                    value={formData.event_date}
+                    onChange={handleInputChange}
+                    required={true}
+                  />
+                </div>
+                <div className={calendarStyles["calendar-form-col-item"]}>
+                  <Input
+                    label={"Start Time"}
+                    type={"time"}
+                    name={"start_time"}
+                    value={formData.start_time}
+                    onChange={handleInputChange}
+                    required={true}
+                  />
+                </div>
+                <div className={calendarStyles["calendar-form-col-item"]}>
+                  <Input
+                    label={"End Time"}
+                    type={"time"}
+                    name={"end_time"}
+                    value={formData.end_time}
+                    onChange={handleInputChange}
+                    required={true}
+                  />
+                </div>
+              </div>
+              <div className={calendarStyles["calendar-form-col-container"]}>
+                <div className={calendarStyles["calendar-form-col-item"]}>
+                  <label>
+                    <span className={formStyles["required"]}>* </span>Invitees
+                  </label>
+                  <ul className={calendarStyles.invitees}>
+                    {otherUsers.map((otherUser) => {
+                      return (
+                        <li
+                          className={
+                            formData.invitees.includes(otherUser.id)
+                              ? `${calendarStyles.selected}`
+                              : ""
+                          }
+                          onClick={() => addInvitee(otherUser.id)}
+                          key={otherUser.id}
+                        >
+                          {otherUser.first_name}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+                <div className={calendarStyles["calendar-form-col-item"]}>
+                  <Input
+                    label={"Reminder"}
+                    type={"select"}
+                    name={"reminder_interval"}
+                    value={formData.reminder_interval}
+                    onChange={handleInputChange}
+                    required={true}
+                    selectItems={reminderIntervals}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className={formStyles["button-ribbon"]}>
-          <button>Save</button>
-          <Link to="/calendar">Cancel</Link>
-        </div>
-      </form>
+          <div className={formStyles["button-ribbon"]}>
+            <button className={calendarStyles["save-btn"]}>Save</button>
+            <Link className={formStyles["redirect-link"]} to="/calendar">
+              Cancel
+            </Link>
+          </div>
+        </form>
+      </div>
       <Footer />
     </div>
   );

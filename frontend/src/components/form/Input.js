@@ -11,6 +11,7 @@ const Input = ({
   selectItems,
   multiple,
   size,
+  className,
 }) => {
   return (
     <>

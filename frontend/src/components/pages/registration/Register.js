@@ -169,7 +169,7 @@ const Register = () => {
         <IndicatesRequired />
         <form onSubmit={handleSubmit} noValidate>
           <div className={formStyles["form-container"]}>
-            <div className={formStyles["form-sub-container"]}>
+            <div className={formStyles["form-2col-container"]}>
               <Input
                 label={"First Name"}
                 type={"text"}
@@ -211,7 +211,7 @@ const Register = () => {
                 required={true}
               />
             </div>
-            <div className={formStyles["form-sub-container"]}>
+            <div className={formStyles["form-2col-container"]}>
               <Input
                 label={"Middle Name"}
                 type={"text"}

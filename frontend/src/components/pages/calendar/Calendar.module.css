@@ -17,11 +17,57 @@
 }
 
 .invitees {
+  margin-top: 0.2rem;
   height: 10rem;
-  width: 10rem;
+  width: 100%;
   overflow-y: scroll;
+  border: 1px solid #868e96;
 }
 
 .calendar-container {
   padding: 2rem;
+}
+
+.add-calendar-component {
+  width: 1000px;
+}
+
+.calendar-form-container {
+  width: 100%;
+}
+
+.calendar-form-col-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.calendar-form-col-item {
+  width: 100%;
+}
+
+.save-btn {
+  background-color: #ffd43b;
+  color: black;
+  border-color: #ffd43b;
+}
+
+.save-btn:hover,
+.save-btn:active {
+  background-color: #ffcb3b;
+  color: black;
+  border-color: #ffcb3b;
+}
+
+.delete-btn {
+  background-color: #f03e3e;
+  color: white;
+  border-color: #f03e3e;
+}
+
+.delete-btn:hover,
+.delete-btn:active {
+  background-color: #e03636;
+  color: white;
+  border-color: #e03636;
 }
